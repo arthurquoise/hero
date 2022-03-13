@@ -1,6 +1,7 @@
 package cesi.hero.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Incident")
@@ -13,6 +14,9 @@ public class Incident {
 
     @Column(name = "Libelle", nullable = false)
     private String libelle;
+
+    @ManyToMany(mappedBy = "incidents")
+    private List<Hero> heroes;
 
     public Incident(){
 
@@ -35,4 +39,11 @@ public class Incident {
     }
 
 
+    public List<Hero> getHeroes() {
+        return heroes;
+    }
+
+    public void setHeroes(List<Hero> heroes) {
+        this.heroes = heroes;
+    }
 }
