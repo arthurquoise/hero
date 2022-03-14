@@ -7,10 +7,11 @@ import cesi.hero.repositories.IncidentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 @Controller
 public class HeroController {
@@ -25,13 +26,14 @@ public class HeroController {
     }
 
     @RequestMapping("/")
-    public String getHeroes(Model model){
+    public ModelAndView getHeroes(){
         List<Hero> heroes = (List<Hero>) _heroRepository.findAll();
-        model.addAttribute("heroes", heroes);
-        return "heroes";
+        ModelAndView modelAndView = new ModelAndView("heroes");
+        modelAndView.addObject("heroes", heroes);
+        return modelAndView;
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String RegisterForm(Model model){
         List<Incident> incidents = (List<Incident>) this._incidentRepository.findAll();
         model.addAttribute("hero", new Hero());
@@ -40,8 +42,26 @@ public class HeroController {
     }
 
     @PostMapping("/register")
-    public String RegisterSubmit(@ModelAttribute Hero hero, Model model){
+    public String RegisterSubmit(
+            @ModelAttribute Hero hero,
+            @RequestParam(value="incidents", required = false) int[]incidents,
+            BindingResult bindingResult,
+            Model model){
 
+        if(incidents != null){
+
+            for(int i = 0; i < incidents.length; i++){
+                Incident incident;
+                System.out.println(incidents[i]);
+                if (_incidentRepository.existsById(incidents[i])){
+                    incident = _incidentRepository.findById(incidents[i]).get();
+                    hero.getIncidents().add(incident);
+                }
+
+            }
+
+
+        }
     return "";
     }
 }

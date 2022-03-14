@@ -27,7 +27,7 @@
 
 <!--CONTENT-->
 <div class="container-md">
-  <form action="#" th:action="@{/register}" th:object="${hero}">
+  <form action="#" th:action="@{/register}" th:object="${hero}" method="post">
 
     <div>
       <label>Nom</label>
@@ -46,7 +46,7 @@
 
     <div>
       <label>Longitude</label>
-      <input type="text" class="form-control" th:field="*{villeLatitude}" placeholder="hophop">
+      <input type="text" class="form-control" th:field="*{villeLongitude}" placeholder="hophop">
     </div>
 
     <div>
@@ -58,9 +58,14 @@
       Sélectionner 1 à 4 incidents
     </p>
     <div class="form-check" th:each="incident: ${incidents}">
-        <input class="form-check-input" type="checkbox" th:value="${incident.getIncidentId()}">
+        <input class="form-check-input" name="incidents" type="checkbox" th:value="${incident.getIncidentId()}">
         <label class ="form-check-label" th:text="${incident.getLibelle()}"></label>
     </div>
+
+    <div>
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+
   </form>
 </div>
 
