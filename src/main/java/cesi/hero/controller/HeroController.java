@@ -4,7 +4,6 @@ import cesi.hero.model.Hero;
 import cesi.hero.model.Incident;
 import cesi.hero.repositories.HeroRepository;
 import cesi.hero.repositories.IncidentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 @Controller
 public class HeroController {
@@ -43,25 +43,14 @@ public class HeroController {
 
     @PostMapping("/register")
     public String RegisterSubmit(
-            @ModelAttribute Hero hero,
-            @RequestParam(value="incidents", required = false) int[]incidents,
+            @Valid @ModelAttribute Hero hero,
             BindingResult bindingResult,
             Model model){
 
-        if(incidents != null){
-
-            for(int i = 0; i < incidents.length; i++){
-                Incident incident;
-                System.out.println(incidents[i]);
-                if (_incidentRepository.existsById(incidents[i])){
-                    incident = _incidentRepository.findById(incidents[i]).get();
-                    hero.getIncidents().add(incident);
-                }
-
-            }
-
-
+        if (bindingResult.hasErrors()) {
+            return "register";
         }
-    return "";
+
+        return "redirect:/";
     }
 }

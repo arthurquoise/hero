@@ -1,6 +1,9 @@
 package cesi.hero.model;
 
+import javax.validation.constraints.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 
@@ -13,21 +16,33 @@ public class Hero {
     @Column(name = "HeroID")
     private int heroId;
 
+    @Size(min = 1)
+    @NotNull(message = "La saisie du nom est obligatoire")
     @Column(name = "Nom", nullable = false)
     private String nom;
 
+    @Size(min = 1)
+    @NotNull(message = "La saisie de la vill est obligatoire")
     @Column(name = "Ville", nullable = false)
     private String ville;
 
+    @Size(min = 1)
+    @NotNull(message = "La saisie de la latitude est obligatoire")
     @Column(name = "VilleLatitude", nullable = false)
     private String villeLatitude;
 
+    @Size(min = 1)
+    @NotNull(message = "La saisie de la longitude est obligatoire")
     @Column(name = "VilleLongitude", nullable = false)
     private String villeLongitude;
 
+    @NotNull
+    @Size(min = 10, max = 10, message = "La saisie du numéro doit faire 10 caractères")
     @Column(name = "Telephone", nullable = false)
     private String telephone;
 
+    @NotNull
+    @Size(min = 1, max = 3, message = "Il faut choisir entre 1 et 3 incidents")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "HeroIncident",
     joinColumns = {@JoinColumn(name = "HeroID")},
