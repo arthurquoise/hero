@@ -41,10 +41,10 @@ public class Hero {
     @Column(name = "Telephone", nullable = false)
     private String telephone;
 
-    @NotNull
+    @NotNull(message = "Veuillez saisir au moins 1 incident")
     @Size(min = 1, max = 3, message = "Il faut choisir entre 1 et 3 incidents")
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "HeroIncident",
+    @JoinTable(name = "IncidentHero",
     joinColumns = {@JoinColumn(name = "HeroID")},
     inverseJoinColumns = {@JoinColumn(name = "IncidentID")})
     private List<Incident> incidents;

@@ -32,44 +32,44 @@
     <div>
       <label>Nom</label>
       <input type="text" class="form-control" th:field="*{nom}" placeholder="Super Homard">
-      <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p>
+      <p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p>
     </div>
 
     <div>
       <label>Ville</label>
       <input type="text" class="form-control" th:field="*{ville}" placeholder="Bruay la Buissière">
-      <p th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></p>
+      <p class="text-danger" th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></p>
     </div>
 
     <div>
       <label>Latitude</label>
       <input type="text" class="form-control" th:field="*{villeLatitude}" placeholder="hophop">
-      <p th:if="${#fields.hasErrors('villeLatitude')}" th:errors="*{villeLatitude}"></p>
+      <p class="text-danger" th:if="${#fields.hasErrors('villeLatitude')}" th:errors="*{villeLatitude}"></p>
     </div>
 
     <div>
       <label>Longitude</label>
       <input type="text" class="form-control" th:field="*{villeLongitude}" placeholder="hophop">
-      <p th:if="${#fields.hasErrors('villeLongitude')}" th:errors="*{villeLongitude}"></p>
+      <p class="text-danger" th:if="${#fields.hasErrors('villeLongitude')}" th:errors="*{villeLongitude}"></p>
     </div>
 
     <div>
       <label>Téléphone</label>
       <input type="text" class="form-control" th:field="*{telephone}" placeholder="hophop">
-      <p th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></p>
+      <p class="text-danger" th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></p>
     </div>
 
     <p class="">
-      Sélectionner 1 à 4 incidents
+      Sélectionner 1 à 3 incidents
     </p>
-    <p th:if="${#fields.hasErrors('incidents')}" th:errors="*{incidents}"></p>
+    <p class="text-danger" th:if="${#fields.hasErrors('incidents')}" th:errors="*{incidents}"></p>
     <div class="form-check" th:each="incident: ${incidents}">
         <input class="form-check-input" name="incidents" type="checkbox" th:value="${incident.getIncidentId()}">
         <label class ="form-check-label" th:text="${incident.getLibelle()}"></label>
     </div>
 
-    <div>
-      <button class="btn btn-primary" type="submit">Submit form</button>
+    <div class="mt-2">
+      <button class="btn btn-primary" type="submit">Enregistrer</button>
     </div>
 
   </form>

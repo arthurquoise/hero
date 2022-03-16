@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
+
 @Controller
 public class HeroController {
 
@@ -25,13 +26,13 @@ public class HeroController {
         this._incidentRepository = _incidentRepository;
     }
 
-    @RequestMapping("/")
+/*    @RequestMapping("/")
     public ModelAndView getHeroes(){
         List<Hero> heroes = (List<Hero>) _heroRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("heroes");
         modelAndView.addObject("heroes", heroes);
         return modelAndView;
-    }
+    } */
 
     @GetMapping("/register")
     public String RegisterForm(Model model){
@@ -48,8 +49,12 @@ public class HeroController {
             Model model){
 
         if (bindingResult.hasErrors()) {
+            List<Incident> incidents = (List<Incident>) this._incidentRepository.findAll();
+            model.addAttribute("incidents", incidents);
             return "register";
         }
+
+        this._heroRepository.save(hero);
 
         return "redirect:/";
     }
