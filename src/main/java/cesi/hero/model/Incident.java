@@ -1,5 +1,8 @@
 package cesi.hero.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class Incident {
     private String libelle;
 
     @ManyToMany(mappedBy = "incidents")
+    @JsonManagedReference
     private List<Hero> heroes;
 
     public Incident(){

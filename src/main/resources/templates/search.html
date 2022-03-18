@@ -34,6 +34,14 @@
 </div>
 
 <!--END-->
+<script th:inline="javascript">
+    const city = [[${city}]];
+    const heroes = [[${heroes}]];
+    const arr = JSON.parse(city);
+    console.log(city);
+    const obj = JSON.parse(heroes);
+    console.log(obj);
+</script>
 <script type="text/javascript" th:src="@{/script.js}"></script>
 </body>
 </html>

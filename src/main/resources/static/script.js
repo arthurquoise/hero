@@ -1,41 +1,50 @@
-var map = L.map('map').setView([51.505, -0.09], 13);
+let map;
+const zoom = 8;
+const latDefault = 50.628372508599256;
+const longDefault = 3.0710624233913446;
+let defaultCity = [latDefault, longDefault];
+const ville = (new URLSearchParams(window.location.search)).get('ville');
+const lat = (new URLSearchParams(window.location.search)).get('latitude');
+const long = (new URLSearchParams(window.location.search)).get('longitude');
+console.log(ville);
+console.log(lat);
+console.log(long);
 
-var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(map);
+const init = () => {
 
-var marker = L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+    let mainCity = !lat || !long ? defaultCity : [lat, long];
+    console.log(mainCity);
+    //let mainCity = defaultCity;
 
-var circle = L.circle([51.508, -0.11], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map).bindPopup('I am a circle.');
+    map = L.map('map').setView(mainCity, zoom);
 
-var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
-]).addTo(map).bindPopup('I am a polygon.');
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoiYXJ0aHVycXVvaXNlIiwiYSI6ImNsMHR4aGRuZjAwdDIzaW1vYjl3aW1jcHMifQ.rnaft4ck3Rf7wN5-joZH1A'
+    }).addTo(map);
 
+    L.control.scale().addTo(map);
 
-var popup = L.popup()
-    .setLatLng([51.513, -0.09])
-    .setContent('I am a standalone popup.')
-    .openOn(map);
+    let circleOptions = {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0
+    }
 
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent('You clicked the map at ' + e.latlng.toString())
-        .openOn(map);
+    let circle = L.circle(mainCity, 50000, circleOptions);
+
+    circle.addTo(map);
+
 }
 
-map.on('click', onMapClick);
+init()
+
+let myHero = obj !== null ? obj[0] : null;
+
+//let hero = L.marker([50.29333, 2.77707])
+//    .bindPopup(myHero.nom)
+//    .addTo(map);

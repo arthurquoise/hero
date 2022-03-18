@@ -1,5 +1,7 @@
 package cesi.hero.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
@@ -43,10 +45,11 @@ public class Hero {
 
     @NotNull(message = "Veuillez saisir au moins 1 incident")
     @Size(min = 1, max = 3, message = "Il faut choisir entre 1 et 3 incidents")
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "IncidentHero",
     joinColumns = {@JoinColumn(name = "HeroID")},
     inverseJoinColumns = {@JoinColumn(name = "IncidentID")})
+    @JsonBackReference
     private List<Incident> incidents;
 
     public Hero(){
