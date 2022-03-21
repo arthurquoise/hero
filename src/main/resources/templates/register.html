@@ -43,19 +43,19 @@
 
     <div>
       <label>Latitude</label>
-      <input type="text" class="form-control" th:field="*{villeLatitude}" placeholder="hophop">
+      <input type="text" class="form-control" th:field="*{villeLatitude}" placeholder="50.043">
       <p class="text-danger" th:if="${#fields.hasErrors('villeLatitude')}" th:errors="*{villeLatitude}"></p>
     </div>
 
     <div>
       <label>Longitude</label>
-      <input type="text" class="form-control" th:field="*{villeLongitude}" placeholder="hophop">
+      <input type="text" class="form-control" th:field="*{villeLongitude}" placeholder="120.0402">
       <p class="text-danger" th:if="${#fields.hasErrors('villeLongitude')}" th:errors="*{villeLongitude}"></p>
     </div>
 
     <div>
       <label>Téléphone</label>
-      <input type="text" class="form-control" th:field="*{telephone}" placeholder="hophop">
+      <input type="text" class="form-control" th:field="*{telephone}" placeholder="0607080808">
       <p class="text-danger" th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></p>
     </div>
 

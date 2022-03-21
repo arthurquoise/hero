@@ -28,19 +28,20 @@
 </nav>
 
 <!--CONTENT-->
-
 <div class="container">
-    <div id="map" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
+    <div id="map" style="height: 300px; width: 700px"></div>
 </div>
 
 <!--END-->
 <script th:inline="javascript">
+/*
     const city = [[${city}]];
     const heroes = [[${heroes}]];
     const arr = JSON.parse(city);
     console.log(city);
     const obj = JSON.parse(heroes);
     console.log(obj);
+ */
 </script>
 <script type="text/javascript" th:src="@{/script.js}"></script>
 </body>

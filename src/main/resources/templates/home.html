@@ -29,22 +29,14 @@
 <div class="container">
     <form th:action="@{/search}" method="get">
         <div class="form-group">
-            <label for="ville">Ville</label>
-            <input type="text" class="form-control" name="ville" id="ville" placeholder="Entrer une ville">
-        </div>
-        <div class="form-group">
-            <label for="latitude">Latitude</label>
-            <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Entrer la latitude">
-        </div>
-        <div class="form-group">
-            <label for="longitude">Longitude</label>
-            <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Entrer la longitude">
+            <label for="city">Ville</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="Entrer une ville" required>
         </div>
         <div class="input-group mb-3 mt-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="Incidents">Incident</label>
             </div>
-            <select name="incidentId" class="custom-select" id="Incidents">
+            <select name="id" class="custom-select" id="Incidents">
                 <option th:each="i : ${incidents}" th:value="${i.getIncidentId()}" th:text="${i.getLibelle()}">
                 </option>
             </select>
