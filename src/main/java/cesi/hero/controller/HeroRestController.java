@@ -30,7 +30,6 @@ public class HeroRestController {
 
             heroes = this._heroRepository.FindHeroesWithSpecificIncident(incident.getIncidentId());
 
-            return heroes;
         }
 
         return heroes;
