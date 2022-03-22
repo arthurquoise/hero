@@ -18,22 +18,22 @@ public class Hero {
     @Column(name = "HeroID")
     private int heroId;
 
-    @Size(min = 1)
+    @Size(min = 1, max = 50)
     @NotNull(message = "La saisie du nom est obligatoire")
     @Column(name = "Nom", nullable = false)
     private String nom;
 
-    @Size(min = 1)
+    @Size(min = 1, max = 50)
     @NotNull(message = "La saisie de la vill est obligatoire")
     @Column(name = "Ville", nullable = false)
     private String ville;
 
-    @Size(min = 1)
+    @Size(min = 1, max = 50)
     @NotNull(message = "La saisie de la latitude est obligatoire")
     @Column(name = "VilleLatitude", nullable = false)
     private String villeLatitude;
 
-    @Size(min = 1)
+    @Size(min = 1, max = 50)
     @NotNull(message = "La saisie de la longitude est obligatoire")
     @Column(name = "VilleLongitude", nullable = false)
     private String villeLongitude;
