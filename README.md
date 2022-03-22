@@ -27,7 +27,7 @@
 Pour cloner et lancer cette application, installer les pré-requis puis :
 
 ```
-# Ouvrir le dépôt github depuis Visual Studio
+# Cloner le dépôt git puis l'ouvrir avec IntelliJ
 $ https://github.com/arthurquoise/hero
 
 # Ouvrir hero.sql et exécuter la requête dans HeidiSQL ou PHPMyAdmin
